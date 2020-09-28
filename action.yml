@@ -1,0 +1,5 @@
+name: "Browserstack Screenshot"
+description: "Integrate the Browserstack Screenshots api into your ci/cd pipeline."
+runs:
+    using: 'node12'
+    main: 'index.js'

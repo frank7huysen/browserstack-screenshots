@@ -1,0 +1,24 @@
+{
+  "name": "browserstack-screenshots",
+  "version": "1.0.0",
+  "description": "Integration the Browserstack screenshots api into you ci/cd pipelines.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frank7huysen/browserstack-screenshots.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/frank7huysen/browserstack-screenshots/issues"
+  },
+  "homepage": "https://github.com/frank7huysen/browserstack-screenshots#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0"
+  }
+}
