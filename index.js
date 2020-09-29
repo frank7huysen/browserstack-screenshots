@@ -6,7 +6,7 @@ const BrowserStack = require("browserstack");
 
 try {
   core.info('Start making screenshots');
-  core.info('Browserstack user: ', core.getInput('browserstack-username'));
+  core.info('Browserstack user: ', process.env.BROWSERSTACK_USERNAME);
   core.info('Current dir: ', path.dirname(__filename));
 
   // `who-to-greet` input defined in action metadata file
