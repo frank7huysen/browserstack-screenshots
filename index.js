@@ -15,12 +15,12 @@ const screenshotConfig = {
   "wait_time": 15,
   "orientation": "portrait",
   "browsers": [
-    {
-      "os": "Windows",
-      "os_version": "10",
-      "browser": "chrome",
-      "browser_version": "71.0"
-    },
+    // {
+    //   "os": "Windows",
+    //   "os_version": "10",
+    //   "browser": "chrome",
+    //   "browser_version": "71.0"
+    // },
     {
       "os": "ios",
       "os_version": "14",
@@ -29,25 +29,24 @@ const screenshotConfig = {
       "browser_version": null,
       "real_mobile": true
     },
-    {
-      "os": "ios",
-      "os_version": "13",
-      "browser": "Mobile Safari",
-      "device": "iPhone SE 2020",
-      "browser_version": null,
-      "real_mobile": true
-    },
-    {
-      "os": "android",
-      "os_version": "10.0",
-      "browser": "Android Browser",
-      "device": "Samsung Galaxy S20",
-      "browser_version": null,
-      "real_mobile": true
-    },
+    // {
+    //   "os": "ios",
+    //   "os_version": "13",
+    //   "browser": "Mobile Safari",
+    //   "device": "iPhone SE 2020",
+    //   "browser_version": null,
+    //   "real_mobile": true
+    // },
+    // {
+    //   "os": "android",
+    //   "os_version": "10.0",
+    //   "browser": "Android Browser",
+    //   "device": "Samsung Galaxy S20",
+    //   "browser_version": null,
+    //   "real_mobile": true
+    // },
   ]
 };
-
 
 const generateScreenshots = async () => {
   console.log('Start making screenshots');
@@ -67,8 +66,8 @@ const generateScreenshots = async () => {
   const screenshotsJob = await generateScreenshotsAsync(screenshotClient, screenshotConfig);
   const finishedJob = await waitForJobToFinishAsync(screenshotClient, screenshotsJob.job_id);
 
-  console.log("finishedJob: ", finishedJob);
-  core.setOutput("job_result", finishedJob);
+  console.log("finishedJob: ", finishedJob.screenshots);
+  // core.setOutput("job_result", finishedJob);
 
 }
 
