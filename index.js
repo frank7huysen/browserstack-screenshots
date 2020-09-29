@@ -7,7 +7,6 @@ const BrowserStack = require("browserstack");
 const generateScreenshotsAsync = require('./src/browserstack/generate-screenshots-async');
 const waitForJobToFinishAsync = require('./src/browserstack/wait-for-job-to-finish-async');
 
-
 const screenshotConfig = {
   "url": "https://staging.try.theaterthuis.nl/nl-nl/",
   "win_res": "1024x768",
@@ -49,35 +48,62 @@ const screenshotConfig = {
   ]
 };
 
-  (async () => {
 
-    try {
-      console.log('Start making screenshots');
-      console.log('Browserstack user: ', process.env.BROWSERSTACK_USERNAME);
-      console.log('Current dir: ', path.dirname(__filename));
+const generateScreenshots = async () => {
+  console.log('Start making screenshots');
+  console.log('Browserstack user: ', process.env.BROWSERSTACK_USERNAME);
 
-      // Setup browser stack screenshot client
-      const browserStackCredentials = {
-        username: process.env.BROWSERSTACK_USERNAME,
-        password: process.env.BROWSERSTACK_PASSWORD,
-      };
+  if(!process.env.BROWSERSTACK_USERNAME || !process.env.BROWSERSTACK_PASSWORD) {
+    throw new Error('Browserstack USERNAME or PASSWORD not set');
+  }
 
-      const screenshotClient = await BrowserStack.createScreenshotClient(browserStackCredentials);
-      const screenshotsJob = await generateScreenshotsAsync(screenshotClient, screenshotConfig);
-      const finishedJob = await waitForJobToFinishAsync(screenshotClient, screenshotsJob.job_id);
+  // Setup browser stack screenshot client
+  const browserStackCredentials = {
+    username: process.env.BROWSERSTACK_USERNAME,
+    password: process.env.BROWSERSTACK_PASSWORD,
+  };
 
-      console.log("finishedJob: ", JSON.stringify(finishedJob, null, 4));
+  const screenshotClient = await BrowserStack.createScreenshotClient(browserStackCredentials);
+  const screenshotsJob = await generateScreenshotsAsync(screenshotClient, screenshotConfig);
+  const finishedJob = await waitForJobToFinishAsync(screenshotClient, screenshotsJob.job_id);
 
-      // `who-to-greet` input defined in action metadata file
-      const nameToGreet = core.getInput('who-to-greet');
-      console.log(`Hello ${nameToGreet}!`);
-      const time = (new Date()).toTimeString();
-      core.setOutput("time", time);
-      // Get the JSON webhook payload for the event that triggered the workflow
-      const payload = JSON.stringify(github.context.payload, undefined, 2)
-      console.log(`The event payload: ${payload}`);
-    } catch (error) {
-      core.setFailed(error.message);
+  console.log("finishedJob: ", JSON.stringify(finishedJob, null, 4));
+  core.setOutput("job_result", finishedJob);
+
+}
+
+const ACTION_HANDLERS = {
+  'generate-screenshots': generateScreenshots
+};
+
+(async () => {
+
+  try {
+    console.log('Current dir: ', path.dirname(__filename));
+    console.log('Action', core.getInput('action'))
+
+    const action = core.getInput('action');
+    const actionHandler = ACTION_HANDLERS[action];
+
+    if(!actionHandler) {
+      throw new Error(`ActionHandler not found: ${action}`);
     }
 
-  })();
+    await actionHandler();
+
+  } catch (error) {
+    core.setFailed(error.message);
+  }
+})();
+
+
+
+
+    // // `who-to-greet` input defined in action metadata file
+    // const nameToGreet = core.getInput('who-to-greet');
+    // console.log(`Hello ${nameToGreet}!`);
+    // const time = (new Date()).toTimeString();
+    // core.setOutput("time", time);
+    // // Get the JSON webhook payload for the event that triggered the workflow
+    // const payload = JSON.stringify(github.context.payload, undefined, 2)
+    // console.log(`The event payload: ${payload}`);

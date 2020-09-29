@@ -2,15 +2,15 @@ name: 'Hello World'
 description: 'Greet someone and record the time'
 inputs:
   browserstack-username:
-    description: "Browserstack screenshot api username"
+    description: 'Browserstack screenshot api username'
     required: true
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  action:
+    description: 'Execute sub action. Available actions [generate-screenshots]'
     required: true
-    default: 'World'
+    default: 'generate-screenshots'
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  job_result: # id of output
+    description: 'Result of the finished jobs'
 runs:
   using: 'node12'
   main: 'index.js'
