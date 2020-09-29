@@ -13,7 +13,7 @@ jobs:
         CI: true
         BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
         BROWSERSTACK_PASSWORD: ${{ secrets.BROWSERSTACK_PASSWORD }}
-      uses: frank7huysen/browserstack-screenshots@v1.3.9
+      uses: frank7huysen/browserstack-screenshots@v1.3.10
       with:
         who-to-greet: 'Mona the Octocat'
 
