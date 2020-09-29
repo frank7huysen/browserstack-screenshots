@@ -3,6 +3,10 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const BrowserStack = require("browserstack");
 
+if(process.env.NODE_ENV === 'development') {
+  require('dotenv').config();
+}
+
 // Utils
 const generateScreenshotsAsync = require('./src/browserstack/generate-screenshots-async');
 const waitForJobToFinishAsync = require('./src/browserstack/wait-for-job-to-finish-async');

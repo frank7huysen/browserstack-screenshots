@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "eslint **.js"
+    "format": "eslint **.js",
+    "develop": "NODE_ENV=development node -r dotenv/config index.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
     "@actions/core": "^1.2.6",
     "@actions/github": "^4.0.0",
     "browserstack": "^1.6.0",
+    "dotenv": "^8.2.0",
     "path": "^0.12.7"
   },
   "devDependencies": {
