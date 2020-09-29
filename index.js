@@ -1,9 +1,10 @@
+const path = require('path');
 const core = require('@actions/core');
 const github = require('@actions/github');
 
 try {
   core.info('Start making screenshots');
-  core.info('Current dir: ', process.cwd());
+  core.info('Current dir: ', path.dirname(__filename));
 
   // `who-to-greet` input defined in action metadata file
   const nameToGreet = core.getInput('who-to-greet');
