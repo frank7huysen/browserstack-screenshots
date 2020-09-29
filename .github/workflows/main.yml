@@ -9,13 +9,14 @@ jobs:
     steps:
     - name: Hello world action step
       id: hello
-      uses: frank7huysen/browserstack-screenshots@v1.3.6
-      with:
-        who-to-greet: 'Mona the Octocat'
       env:
         CI: true
         BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
         BROWSERSTACK_PASSWORD: ${{ secrets.BROWSERSTACK_PASSWORD }}
+      uses: frank7huysen/browserstack-screenshots@v1.3.6
+      with:
+        who-to-greet: 'Mona the Octocat'
+
     # Use the output from the `hello` step
     - name: Get the output time
       run: echo "The time was ${{ steps.hello.outputs.time }}"
