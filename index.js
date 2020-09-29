@@ -3,8 +3,8 @@ const github = require('@actions/github');
 
 try {
   core.info('Start making screenshots');
-  core.info('dir: ', process.cwd());
-  
+  core.info('Current dir: ', process.cwd());
+
   // `who-to-greet` input defined in action metadata file
   const nameToGreet = core.getInput('who-to-greet');
   console.log(`Hello ${nameToGreet}!`);
