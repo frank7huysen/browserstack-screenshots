@@ -13,7 +13,7 @@ const logPendingDevices = (job) => {
 
 const waitForJobToFinish = async (screenshotClient, jobId) => {
   const job = await getJobAsync(screenshotClient, jobId);
-
+  console.log({jobState: job.state});
   if (job.state !== STATUS_DONE) {
     logPendingDevices(job);
     return await setTimeout(async () => await waitForJobToFinish(screenshotClient, jobId), POLL_FREQUENCY_MS);
