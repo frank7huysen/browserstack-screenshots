@@ -18,8 +18,6 @@ const waitForJobToFinish = async (screenshotClient, jobId) => {
     logPendingDevices(job);
     return await setTimeout(async () => await waitForJobToFinish(screenshotClient, jobId), POLL_FREQUENCY_MS);
   }
-
-  console.log({ job: JSON.stringify(job, null, 4) });
   return job;
 }
 
