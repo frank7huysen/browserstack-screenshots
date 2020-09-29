@@ -4,7 +4,8 @@
   "description": "Integrate the Browserstack screenshots api into you ci/cd pipelines.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "eslint **.js"
   },
   "repository": {
     "type": "git",
@@ -22,5 +23,17 @@
     "@actions/github": "^4.0.0",
     "browserstack": "^1.6.0",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.10.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.4",
+    "pretty-quick": "^2.0.1"
   }
 }
