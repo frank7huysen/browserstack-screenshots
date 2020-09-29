@@ -23,4 +23,4 @@ const waitForJobToFinish = async (screenshotClient, jobId) => {
   return job;
 }
 
-exports.module = waitForJobToFinish;
+module.exports = waitForJobToFinish;
