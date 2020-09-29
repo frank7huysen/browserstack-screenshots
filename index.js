@@ -2,8 +2,12 @@ const path = require('path');
 const core = require('@actions/core');
 const github = require('@actions/github');
 
+const BrowserStack = require("browserstack");
+
+
 try {
   core.info('Start making screenshots');
+  core.info('Browserstack user: ', secrets.BROWSERSTACK_USERNAME );
   core.info('Current dir: ', path.dirname(__filename));
 
   // `who-to-greet` input defined in action metadata file
