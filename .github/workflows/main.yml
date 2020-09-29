@@ -9,7 +9,7 @@ jobs:
     steps:
     - name: Hello world action step
       id: hello
-      uses: frank7huysen/browserstack-screenshots@v1.3.3
+      uses: frank7huysen/browserstack-screenshots@v1.3.4
       with:
         who-to-greet: 'Mona the Octocat'
       env:
