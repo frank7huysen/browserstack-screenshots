@@ -5,7 +5,7 @@ const BrowserStack = require("browserstack");
 
 // Utils
 const generateScreenshotsAsync = require('./src/browserstack/generate-screenshots-async');
-const waitForJobToFinishAsync = required('./src/browserstack/wait-for-job-to-finish-async');
+const waitForJobToFinishAsync = require('./src/browserstack/wait-for-job-to-finish-async');
 
 
 (async () => {
