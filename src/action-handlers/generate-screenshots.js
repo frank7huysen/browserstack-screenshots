@@ -1,5 +1,6 @@
 const path = require('path');
 const BrowserStack = require("browserstack");
+const core = require('@actions/core');
 
 // Utils
 const generateScreenshotsAsync = require('../browserstack/generate-screenshots-async');
