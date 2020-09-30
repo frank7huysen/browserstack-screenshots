@@ -116,18 +116,18 @@ const collectGatsbyUrls = () => {
     ? core.getInput('gatsby-public-folder')
     : process.env.GATSBY_PUBLIC_FOLDER;
 
+  const absoluteGatsbyPath = path.join(appDir, gatsbyDirectory)
   console.log('START COLLECTING GATSBY URLS');
   console.log('website-domain: ', domain);
-  console.log('dir: ', path.join(appDir, gatsbyDirectory));
-  console.log('dir github repo: ', path.join(process.env.GITHUB_REPOSITORY, gatsbyDirectory));
+  console.log('dir: ', absoluteGatsbyPath);
 
   // Find files by extension recursively
-  const htmlFilesRaw = findFilesByExtension(path.join(appDir, gatsbyDirectory), 'html');
+  const htmlFilesRaw = findFilesByExtension(absoluteGatsbyPath, 'html');
   console.log('html files found: ', htmlFilesRaw)
 
   // Remove base directory from result.
   const urls = htmlFilesRaw
-    .map((url) => `${domain}\/${url.replace(appDir, '')}`)
+    .map((url) => `${domain}${url.replace(absoluteGatsbyPath, '')}`)
     .join(',');
 
   console.log('html files found: ', urls);
