@@ -73,8 +73,8 @@ const generateScreenshots = async () => {
     console.log('FiNISHED SCREENSHOT FOR PAGE: ', screenshotConfig);
   }
 
-  console.log("finishedJob: ", finishedJob);
-  core.setOutput("job-result", finishedJob);
+  console.log("finishedJob: ", finishedJobs);
+  core.setOutput("job-result", finishedJobs);
 }
 
 const downloadScreenshots = async () => {
