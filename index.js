@@ -119,9 +119,10 @@ const collectGatsbyUrls = () => {
   console.log('START COLLECTING GATSBY URLS');
   console.log('website-domain: ', domain);
   console.log('dir: ', path.join(appDir, gatsbyDirectory));
+  console.log('dir github repo: ', path.join(process.env.GITHUB_REPOSITORY, gatsbyDirectory));
 
   // Find files by extension recursively
-  const htmlFilesRaw = findFilesByExtension(gatsbyDirectory, 'html');
+  const htmlFilesRaw = findFilesByExtension(path.join(appDir, gatsbyDirectory), 'html');
   console.log('html files found: ', htmlFilesRaw)
 
   // Remove base directory from result.
