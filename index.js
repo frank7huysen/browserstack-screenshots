@@ -1,7 +1,9 @@
 const path = require('path');
+const urlUtil = require('url');
 const core = require('@actions/core');
 const github = require('@actions/github');
 const BrowserStack = require("browserstack");
+
 
 // Utils
 const generateScreenshotsAsync = require('./src/browserstack/generate-screenshots-async');
@@ -106,7 +108,6 @@ const downloadScreenshots = async () => {
   core.setOutput("screenshots-directory", SCREEN_SHOT_DIRECTORY);
 }
 
-
 const collectGatsbyUrls = () => {
   const domain = process.env.NODE_ENV !== 'development'
     ? core.getInput('website-domain')
@@ -127,7 +128,7 @@ const collectGatsbyUrls = () => {
 
   // Remove base directory from result.
   const urls = htmlFilesRaw
-    .map((url) => `${domain}${url.replace(absoluteGatsbyPath, '')}`)
+    .map((url) => urlUtil.resolve(domain, url.replace(absoluteGatsbyPath, '')))
     .join(',');
 
   console.log('html files found: ', urls);
