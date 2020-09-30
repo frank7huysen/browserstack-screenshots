@@ -19,4 +19,4 @@ jobs:
 
     # Use the output from the `hello` step
     - name: Show job result
-      run: echo "The result of the job was ${{ steps.generate-screenshots.job_result }}"
+      run: echo "The result of the job was ${{ steps.generate-screenshots.outputs.job-result }}"

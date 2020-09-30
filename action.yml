@@ -9,7 +9,7 @@ inputs:
     required: true
     default: 'generate-screenshots'
 outputs:
-  job_result: # id of output
+  job-result: # id of output
     description: 'Result of the finished jobs'
 runs:
   using: 'node12'

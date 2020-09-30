@@ -39,9 +39,8 @@ const generateScreenshots = async () => {
   const finishedJob = await waitForJobToFinishAsync(screenshotClient, screenshotsJob.job_id);
 
   console.log("finishedJob: ", finishedJob);
-  core.setOutput("job_result", "hello");
+  core.setOutput("job-result", "hello");
 }
-
 const ACTION_HANDLERS = {
   'generate-screenshots': generateScreenshots
 };
