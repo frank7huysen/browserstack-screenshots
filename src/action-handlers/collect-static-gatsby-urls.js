@@ -16,7 +16,7 @@ const collectGatsbyUrls = () => {
     ? core.getInput('gatsby-public-folder')
     : process.env.GATSBY_PUBLIC_FOLDER;
 
-  const absoluteGatsbyPath = path.join(appDir, gatsbyDirectory)
+  const absoluteGatsbyPath = path.join(appDir, gatsbyDirectory);
   console.log('START COLLECTING GATSBY URLS');
   console.log('website-domain: ', domain);
   console.log('dir: ', absoluteGatsbyPath);
@@ -28,10 +28,9 @@ const collectGatsbyUrls = () => {
   // Remove base directory from result.
   const urls = htmlFilesRaw
     .map((url) => urlUtil.resolve(domain, url.replace(absoluteGatsbyPath, '')))
-    .join(',');
 
-  console.log('html files found: ', urls.split(','));
-  core.setOutput('urls', urls);
+  console.log('html files found: ', urls);
+  core.setOutput('urls', urls.join(','));
 }
 
 module.exports = collectGatsbyUrls;
