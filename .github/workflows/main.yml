@@ -35,6 +35,6 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: Upload screenshot as artifact
-        path: /screenshots
+        path: ${{ steps.download-screenshots.outputs.screenshots-directory }}
 
 

@@ -72,6 +72,7 @@ const downloadScreenshots = async () => {
   }
 
   console.log(`Finished downloading screenshots ${screenshotJobResult.screenshots.length}`);
+  core.setOutput("screenshots-directory", SCREEN_SHOT_DIRECTORY);
 }
 
 const ACTION_HANDLERS = {

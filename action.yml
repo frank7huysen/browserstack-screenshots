@@ -11,6 +11,8 @@ inputs:
 outputs:
   job-result: # id of output
     description: 'Result of the finished jobs'
+  screenshots-directory:
+    description: 'Screenshots download directory'
 runs:
   using: 'node12'
   main: 'index.js'
