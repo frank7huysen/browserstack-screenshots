@@ -73,7 +73,7 @@ const generateScreenshots = async () => {
     console.log('FiNISHED SCREENSHOT FOR PAGE: ', screenshotConfig);
   }
 
-  console.log("finishedJob: ", finishedJobs);
+  console.log("finishedJob: ", JSON.stringify(finishedJobs, null, 4));
   core.setOutput("job-result", finishedJobs);
 }
 
@@ -92,11 +92,13 @@ const downloadScreenshots = async () => {
     for await (const screenshot of screenshotJobResult.screenshots) {
       const urlParts = screenshot.image_url.split('/')
       const length = urlParts.length - 1;
+      const fileId = urlParts[length -1];
       const filename = urlParts[length];
+      const fullName = `${fileId}-${filename}`;
 
-      console.log('Download: ', filename);
-      await downloadFile(screenshot.image_url, filename, SCREEN_SHOT_DIRECTORY);
-      console.log('Download finished: ', filename);
+      console.log('Download: ', fullName);
+      await downloadFile(screenshot.image_url, fullName, SCREEN_SHOT_DIRECTORY);
+      console.log('Download finished: ', fullName);
     }
   }
 
