@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://try.withlove.tv/sitemap.xml
+Host: https://try.withlove.tv

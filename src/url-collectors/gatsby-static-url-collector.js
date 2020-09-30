@@ -1,0 +1,5 @@
+
+
+const collectStaticGatsbyUrls = (directory) => {
+
+}
