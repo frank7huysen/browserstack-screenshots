@@ -20,3 +20,13 @@ jobs:
     # Use the output from the `hello` step
     - name: Show job result
       run: echo "The result of the job was ${{ steps.generate-screenshots.outputs.job-result }}"
+
+    # Download screenshots from browserstack
+    - name: Download screenshots
+      id: download-screenshots
+      uses: frank7huysen/browserstack-screenshots@v1.3.19
+      with:
+        action: 'download-screenshots'
+        job-result: ${{ steps.generate-screenshots.outputs.job-result }}
+
+

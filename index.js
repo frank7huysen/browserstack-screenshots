@@ -7,6 +7,7 @@ const BrowserStack = require("browserstack");
 const generateScreenshotsAsync = require('./src/browserstack/generate-screenshots-async');
 const waitForJobToFinishAsync = require('./src/browserstack/wait-for-job-to-finish-async');
 const readBrowserConfigAsync = require('./src/browserstack/read-browser-config-async');
+const screenshot = require('browserstack/lib/screenshot');
 
 if (process.env.NODE_ENV === 'development') {
   require('dotenv').config();
@@ -41,8 +42,16 @@ const generateScreenshots = async () => {
   console.log("finishedJob: ", finishedJob);
   core.setOutput("job-result", finishedJob);
 }
+
+const downloadScreenshots = async () => {
+  console.log('Start downloading screenshots');
+  const screenshotJobResult = core.getInput('job-result');
+  console.log('screenshots: ', screenshotJobResult );
+}
+
 const ACTION_HANDLERS = {
-  'generate-screenshots': generateScreenshots
+  'generate-screenshots': generateScreenshots,
+  'download-screenshots': downloadScreenshots
 };
 
 (async () => {
@@ -50,7 +59,6 @@ const ACTION_HANDLERS = {
     console.log('Current dir: ', path.dirname(__filename));
     console.log('Action', action)
     const actionHandler = ACTION_HANDLERS[action];
-
     if (!actionHandler) {
       throw new Error(`ActionHandler not found: ${action}`);
     }
