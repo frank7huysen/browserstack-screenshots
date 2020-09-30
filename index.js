@@ -127,11 +127,7 @@ const collectGatsbyUrls = () => {
 
   // Remove base directory from result.
   const urls = htmlFilesRaw
-    .map((url) => {
-      const urlPath = url.split('/');
-      urlPath.shift();
-      return `${domain}\/${urlPath.join('/')}`
-    })
+    .map((url) => `${domain}\/${url.replace(appDir, '')}`)
     .join(',');
 
   console.log('html files found: ', urls);
