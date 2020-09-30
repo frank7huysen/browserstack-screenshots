@@ -71,7 +71,7 @@ const downloadScreenshots = async () => {
     console.log('Download finished: ', filename);
   }
 
-  console.log(`Finished downloading screenshots ${screenshotJobResult.screenshot.length}`);
+  console.log(`Finished downloading screenshots ${screenshotJobResult.screenshots.length}`);
 }
 
 const ACTION_HANDLERS = {
