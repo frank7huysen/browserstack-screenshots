@@ -9,7 +9,7 @@ jobs:
     steps:
 
     # Collect static gatsby site urls
-    - name: Gatsby collect url
+    - name: Gatsby collect urls
       id: collect-static-gatsby
       uses: frank7huysen/browserstack-screenshots@v1.4.2
       with:
@@ -37,10 +37,18 @@ jobs:
         action: 'download-screenshots'
         job-result: ${{ steps.generate-screenshots.outputs.job-result }}
 
+    # Generate pdf with screenshots
+    - name: Generate result PDF
+      id: generate-pdf
+      uses: frank7huysen/browserstack-screenshots@v1.4.2
+      with:
+        action: 'generate-pdf'
+
     # Upload artifacts
     - uses: actions/upload-artifact@v2
       with:
         name: browserstack-screenshots
         path: ${{ steps.download-screenshots.outputs.screenshots-directory }}
+
 
 

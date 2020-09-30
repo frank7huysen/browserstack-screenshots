@@ -10,12 +10,14 @@ const core = require('@actions/core');
 const generateScreenshots = require('./src/action-handlers/generate-screenshots');
 const downloadScreenshots = require('./src/action-handlers/download-screenshots');
 const collectGatsbyUrls = require('./src/action-handlers/collect-static-gatsby-urls');
+const generatePdf = require('./src/action-handlers/generate-pdf');
 
 
 const ACTION_HANDLERS = {
   'generate-screenshots': generateScreenshots,
   'download-screenshots': downloadScreenshots,
-  'collect-static-gatsby': collectGatsbyUrls
+  'collect-static-gatsby': collectGatsbyUrls,
+  'generate-pdf': generatePdf,
 };
 
 (async () => {

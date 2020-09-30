@@ -1,4 +1,4 @@
-name: 'Hello World'
+name: 'Browserstack Screenshots CI/CD'
 description: 'Greet someone and record the time'
 inputs:
   browserstack-username:
@@ -13,6 +13,8 @@ inputs:
     description: "Website page urls"
   gatsby-public-folder:
     description: "Path to gatsby's public folder"
+  job-result:
+    description: "Screenshots result json"
 
 outputs:
   urls:

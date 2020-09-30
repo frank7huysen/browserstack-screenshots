@@ -8,7 +8,8 @@
     "format": "eslint **.js",
     "generate-screenshots": "NODE_ENV=development ACTION=generate-screenshots node index.js",
     "download-screenshots": "NODE_ENV=development ACTION=download-screenshots node index.js",
-    "collect-gatsby": "NODE_ENV=development ACTION=collect-static-gatsby node index.js"
+    "collect-gatsby": "NODE_ENV=development ACTION=collect-static-gatsby node index.js",
+    "generate-pdf": "NODE_ENV=development ACTION=generate-pdf node index.js"
   },
   "repository": {
     "type": "git",
@@ -28,7 +29,8 @@
     "dotenv": "^8.2.0",
     "fetch": "^1.1.0",
     "fs": "^0.0.1-security",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "pdfkit": "^0.11.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
