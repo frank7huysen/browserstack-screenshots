@@ -13,7 +13,7 @@ jobs:
         CI: true
         BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
         BROWSERSTACK_PASSWORD: ${{ secrets.BROWSERSTACK_PASSWORD }}
-      uses: frank7huysen/browserstack-screenshots@v1.3.15
+      uses: frank7huysen/browserstack-screenshots@v1.3.16
       with:
         action: 'generate-screenshots'
 
