@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "eslint **.js",
     "generate-screenshots": "NODE_ENV=development ACTION=generate-screenshots node index.js",
-    "download-screenshots": "NODE_ENV=development ACTION=download-screenshots node index.js"
+    "download-screenshots": "NODE_ENV=development ACTION=download-screenshots node index.js",
+    "collect-gatsby": "NODE_ENV=development ACTION=collect-static-gatsby node index.js"
   },
   "repository": {
     "type": "git",

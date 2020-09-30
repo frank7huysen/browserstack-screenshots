@@ -3,13 +3,19 @@ description: 'Greet someone and record the time'
 inputs:
   browserstack-username:
     description: 'Browserstack screenshot api username'
-    required: true
   action:
     description: 'Execute sub action. Available actions [generate-screenshots]'
     required: true
     default: 'generate-screenshots'
+  website-domain:
+    description: 'Website base url'
+  screenshot-page-urls:
+    description: "Website page urls"
+
 outputs:
-  job-result: # id of output
+  urls:
+    description: 'Output urls of url collectors'
+  job-result:
     description: 'Result of the finished jobs'
   screenshots-directory:
     description: 'Screenshots download directory'

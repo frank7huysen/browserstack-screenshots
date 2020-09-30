@@ -8,6 +8,15 @@ jobs:
     name: Make screenshots
     steps:
 
+    # Collect static gatsby site urls
+    - name: Gatsby collect url
+      id: collect-static-gatsby
+      uses: frank7huysen/browserstack-screenshots@v1.3.24
+      with:
+        action: 'collect-static-gatsby'
+        gatsby-public-folder: gatsby-public
+        website-domain: https://staging.try.theaterthuis.nl/nl-nl/
+
     # Generate screenshots
     - name: Generate screenshots
       id: generate-screenshots
@@ -18,6 +27,7 @@ jobs:
       uses: frank7huysen/browserstack-screenshots@v1.3.24
       with:
         action: 'generate-screenshots'
+        screenshot-page-urls: ${{ steps.collect-static-gatsby.outputs.urls }}
 
     # Use the output from the `hello` step
     - name: Show job result
@@ -34,7 +44,7 @@ jobs:
     # Upload artifacts
     - uses: actions/upload-artifact@v2
       with:
-        name: Upload screenshot as artifact
+        name: browserstack-screenshots
         path: ${{ steps.download-screenshots.outputs.screenshots-directory }}
 
 
