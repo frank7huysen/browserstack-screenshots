@@ -11,6 +11,8 @@ inputs:
     description: 'Website base url'
   screenshot-page-urls:
     description: "Website page urls"
+  gatsby-public-folder:
+    description: "Path to gatsby's public folder"
 
 outputs:
   urls:

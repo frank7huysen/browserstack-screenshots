@@ -10,7 +10,6 @@ const readBrowserConfigAsync = require('./src/browserstack/read-browser-config-a
 const downloadFile = require('./src/files/download-file');
 const ensureDirectory = require('./src/files/ensure-directory');
 const findFilesByExtension = require('./src/files/find-files-by-extension');
-const screenshot = require('browserstack/lib/screenshot');
 
 if (process.env.NODE_ENV === 'development') {
   require('dotenv').config();
