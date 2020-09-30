@@ -118,7 +118,7 @@ const collectGatsbyUrls = () => {
 
   console.log('START COLLECTING GATSBY URLS');
   console.log('website-domain: ', domain);
-  console.log('dir: ', gatsbyDirectory);
+  console.log('dir: ', path.join(appDir, gatsbyDirectory));
 
   // Find files by extension recursively
   const htmlFilesRaw = findFilesByExtension(gatsbyDirectory, 'html');
