@@ -7,11 +7,17 @@ const BrowserStack = require("browserstack");
 const generateScreenshotsAsync = require('./src/browserstack/generate-screenshots-async');
 const waitForJobToFinishAsync = require('./src/browserstack/wait-for-job-to-finish-async');
 const readBrowserConfigAsync = require('./src/browserstack/read-browser-config-async');
-const screenshot = require('browserstack/lib/screenshot');
+const downloadFile = require('./src/files/download-file');
+const ensureDirectory = require('./src/files/ensure-directory');
 
 if (process.env.NODE_ENV === 'development') {
   require('dotenv').config();
 }
+
+const appDir = path.dirname(require.main.filename);
+
+// Constants
+const SCREEN_SHOT_DIRECTORY = `${appDir}/screenshots`;
 
 const action = process.env.NODE_ENV === 'development'
   ? process.env.ACTION
@@ -31,8 +37,8 @@ const generateScreenshots = async () => {
     password: process.env.BROWSERSTACK_PASSWORD,
   };
 
-  const screenshotConfig = await readBrowserConfigAsync();
-  if(!screenshotConfig) throw new Error('Config not found at ./screenshot-flow/browser-settings.json');
+  const screenshotConfig = await readBrowserConfigAsync(appDir);
+  if (!screenshotConfig) throw new Error('Config not found at ./screenshot-flow/browser-settings.json');
 
   const screenshotClient = await BrowserStack.createScreenshotClient(browserStackCredentials);
   const screenshotsJob = await generateScreenshotsAsync(screenshotClient, screenshotConfig);
@@ -45,8 +51,23 @@ const generateScreenshots = async () => {
 
 const downloadScreenshots = async () => {
   console.log('Start downloading screenshots');
-  const screenshotJobResult = core.getInput('job-result');
-  console.log('screenshots: ', screenshotJobResult );
+  const screenshotJobResultJson = process.env.NODE_ENV !== 'development'
+    ? core.getInput('job-result')
+    : process.env.SCREENSHOTS_JOB;
+  const screenshotJobResult = JSON.parse(screenshotJobResultJson);
+
+  console.log('screenshots: ', screenshotJobResult);
+  console.log('screenshots id: ', screenshotJobResult.id);
+
+  ensureDirectory(SCREEN_SHOT_DIRECTORY);
+
+  for await (const screenshot of screenshotJobResult.screenshots) {
+    const urlParts = screenshot.image_url.split('/')
+    const length = urlParts.length - 1;
+    const filename = urlParts[length];
+    await downloadFile(screenshot.image_url, filename, SCREEN_SHOT_DIRECTORY);
+  }
+
 }
 
 const ACTION_HANDLERS = {

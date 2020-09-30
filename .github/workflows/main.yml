@@ -7,6 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Make screenshots
     steps:
+
+    # Generate screenshots
     - name: Generate screenshots
       id: generate-screenshots
       env:
@@ -28,5 +30,11 @@ jobs:
       with:
         action: 'download-screenshots'
         job-result: ${{ steps.generate-screenshots.outputs.job-result }}
+
+    # Upload artifacts
+    - uses: actions/upload-artifact@v2
+      with:
+        name: Upload screenshot as artifact
+        path: /screenshots
 
 

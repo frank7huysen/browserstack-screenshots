@@ -1,8 +1,6 @@
 const readFileAsync = require('../files/read-file-async');
-const path = require('path');
-const appDir = path.dirname(require.main.filename);
 
-const readBrowserConfigAsync = async () => {
+const readBrowserConfigAsync = async (appDir) => {
   const configPath = `${appDir}/.screenshot-flow/browser_settings.json`
   console.log('readConfigFile from path: ', configPath);
   const configJson = await readFileAsync(configPath);
