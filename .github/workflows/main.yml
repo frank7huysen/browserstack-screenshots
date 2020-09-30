@@ -11,7 +11,7 @@ jobs:
     # Collect static gatsby site urls
     - name: Gatsby collect url
       id: collect-static-gatsby
-      uses: frank7huysen/browserstack-screenshots@v1.3.24
+      uses: frank7huysen/browserstack-screenshots@v1.3.25
       with:
         action: 'collect-static-gatsby'
         gatsby-public-folder: gatsby-public
@@ -24,7 +24,7 @@ jobs:
         CI: true
         BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
         BROWSERSTACK_PASSWORD: ${{ secrets.BROWSERSTACK_PASSWORD }}
-      uses: frank7huysen/browserstack-screenshots@v1.3.24
+      uses: frank7huysen/browserstack-screenshots@v1.3.25
       with:
         action: 'generate-screenshots'
         screenshot-page-urls: ${{ steps.collect-static-gatsby.outputs.urls }}
@@ -36,7 +36,7 @@ jobs:
     # Download screenshots from browserstack
     - name: Download screenshots
       id: download-screenshots
-      uses: frank7huysen/browserstack-screenshots@v1.3.24
+      uses: frank7huysen/browserstack-screenshots@v1.3.25
       with:
         action: 'download-screenshots'
         job-result: ${{ steps.generate-screenshots.outputs.job-result }}
