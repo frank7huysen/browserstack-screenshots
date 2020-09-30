@@ -1,0 +1,18 @@
+{
+  "url": "https://staging.try.theaterthuis.nl/nl-nl/",
+  "win_res": "1024x768",
+  "mac_res": "1920x1080",
+  "quality": "compressed",
+  "wait_time": 15,
+  "orientation": "portrait",
+  "browsers": [
+    {
+      "os": "ios",
+      "os_version": "14",
+      "browser": "Mobile Safari",
+      "device": "iPhone 11",
+      "browser_version": null,
+      "real_mobile": true
+    }
+  ]
+}

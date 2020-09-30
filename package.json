@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "eslint **.js",
-    "develop": "NODE_ENV=development node -r dotenv/config index.js"
+    "develop": "NODE_ENV=development node index.js"
   },
   "repository": {
     "type": "git",

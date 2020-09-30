@@ -11,13 +11,17 @@ const logPendingDevices = (job) => {
   console.log(`\nAwaiting ${awaitingDevices.length} devices:\n${awaitingDevices}`);
 }
 
+const timeout = ms => new Promise(resolve => setTimeout(resolve, ms));
+
 const waitForJobToFinish = async (screenshotClient, jobId) => {
   const job = await getJobAsync(screenshotClient, jobId);
-  console.log({jobState: job.state});
+
   if (job.state !== STATUS_DONE) {
     logPendingDevices(job);
-    return await setTimeout(async () => await waitForJobToFinish(screenshotClient, jobId), POLL_FREQUENCY_MS);
+    await timeout(POLL_FREQUENCY_MS);
+    return await waitForJobToFinish(screenshotClient, jobId);
   }
+
   return job;
 }
 
