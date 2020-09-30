@@ -14,7 +14,7 @@ jobs:
       uses: frank7huysen/browserstack-screenshots@v1.3.27
       with:
         action: 'collect-static-gatsby'
-        gatsby-public-folder: gatsby-public
+        gatsby-public-folder: ./gatsby-public
         website-domain: https://staging.try.theaterthuis.nl/nl-nl/
 
     # Generate screenshots
