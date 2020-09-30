@@ -39,7 +39,7 @@ const generateScreenshots = async () => {
   const finishedJob = await waitForJobToFinishAsync(screenshotClient, screenshotsJob.job_id);
 
   console.log("finishedJob: ", finishedJob);
-  core.setOutput("job_result", JSON.stringify(finishedJob));
+  core.setOutput("job_result", "hello");
 }
 
 const ACTION_HANDLERS = {
