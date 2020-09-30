@@ -13,7 +13,7 @@ jobs:
         CI: true
         BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
         BROWSERSTACK_PASSWORD: ${{ secrets.BROWSERSTACK_PASSWORD }}
-      uses: frank7huysen/browserstack-screenshots@v1.3.19
+      uses: frank7huysen/browserstack-screenshots@v1.3.20
       with:
         action: 'generate-screenshots'
 
@@ -24,7 +24,7 @@ jobs:
     # Download screenshots from browserstack
     - name: Download screenshots
       id: download-screenshots
-      uses: frank7huysen/browserstack-screenshots@v1.3.19
+      uses: frank7huysen/browserstack-screenshots@v1.3.20
       with:
         action: 'download-screenshots'
         job-result: ${{ steps.generate-screenshots.outputs.job-result }}
