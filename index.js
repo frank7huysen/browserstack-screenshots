@@ -65,9 +65,13 @@ const downloadScreenshots = async () => {
     const urlParts = screenshot.image_url.split('/')
     const length = urlParts.length - 1;
     const filename = urlParts[length];
+
+    console.log('Download: ', filename);
     await downloadFile(screenshot.image_url, filename, SCREEN_SHOT_DIRECTORY);
+    console.log('Download finished: ', filename);
   }
 
+  console.log(`Finished downloading screenshots ${screenshotJobResult.screenshot.length}`);
 }
 
 const ACTION_HANDLERS = {
