@@ -11,7 +11,7 @@ jobs:
     # Collect static gatsby site urls
     - name: Gatsby collect urls
       id: collect-static-gatsby
-      uses: frank7huysen/browserstack-screenshots@v1.4.2
+      uses: frank7huysen/browserstack-screenshots@v1.4.3
       with:
         action: 'collect-static-gatsby'
         gatsby-public-folder: ./gatsby-public
