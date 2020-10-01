@@ -11,6 +11,7 @@ const generateScreenshots = require('./src/action-handlers/generate-screenshots'
 const downloadScreenshots = require('./src/action-handlers/download-screenshots');
 const collectGatsbyUrls = require('./src/action-handlers/collect-static-gatsby-urls');
 const generatePdf = require('./src/action-handlers/generate-pdf');
+const collectSitemapUrls = require('./src/action-handlers/collect-sitemap-urls');
 
 
 const ACTION_HANDLERS = {
@@ -18,11 +19,11 @@ const ACTION_HANDLERS = {
   'download-screenshots': downloadScreenshots,
   'collect-static-gatsby': collectGatsbyUrls,
   'generate-pdf': generatePdf,
+  'collect-sitemap-urls': collectSitemapUrls
 };
 
 (async () => {
   try {
-
     const action = process.env.NODE_ENV === 'development'
       ? process.env.ACTION
       : core.getInput('action');

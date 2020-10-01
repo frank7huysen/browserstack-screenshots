@@ -9,6 +9,7 @@
     "generate-screenshots": "NODE_ENV=development ACTION=generate-screenshots node index.js",
     "download-screenshots": "NODE_ENV=development ACTION=download-screenshots node index.js",
     "collect-gatsby": "NODE_ENV=development ACTION=collect-static-gatsby node index.js",
+    "collect-sitemap": "NODE_ENV=development ACTION=collect-sitemap-urls node index.js",
     "generate-pdf": "NODE_ENV=development ACTION=generate-pdf node index.js"
   },
   "repository": {
@@ -30,7 +31,8 @@
     "fetch": "^1.1.0",
     "fs": "^0.0.1-security",
     "path": "^0.12.7",
-    "pdfkit": "^0.11.0"
+    "pdfkit": "^0.11.0",
+    "xml2js": "^0.4.23"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
