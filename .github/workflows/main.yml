@@ -6,6 +6,8 @@ jobs:
   # Load repository onto ubuntu worker machine
   - name: Checkout
     uses: actions/checkout@v2
+    with:
+      ref: master
 
   generate-screenshots-job:
     runs-on: ubuntu-latest
