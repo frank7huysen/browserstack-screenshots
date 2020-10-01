@@ -30,6 +30,10 @@ const downloadScreenshots = async () => {
 
     // Get all screenshots per screenshot job
     for await (const screenshot of screenshotJobResult.screenshots) {
+      if (!screenshot || !screenshot.image_url || !screenshot.image_url.split('/')) {
+        continue;
+      }
+
       const urlParts = screenshot.image_url.split('/')
       const length = urlParts.length - 1;
       const fileId = urlParts[length - 1];
