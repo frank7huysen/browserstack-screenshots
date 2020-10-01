@@ -3,16 +3,15 @@ name: "Screenshots"
 on: [push]
 
 jobs:
-  # Load repository onto ubuntu worker machine
-  - name: Checkout
-    uses: actions/checkout@v2
-    with:
-      ref: master
 
   generate-screenshots-job:
     runs-on: ubuntu-latest
     name: Make screenshots
     steps:
+
+    # Load repository onto ubuntu worker machine
+    - name: Checkout
+      uses: actions/checkout@v2
 
     # Collect static gatsby site urls
     - name: Gatsby collect urls
