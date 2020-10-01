@@ -16,7 +16,9 @@ const collectGatsbyUrls = () => {
     ? core.getInput('gatsby-public-folder')
     : process.env.GATSBY_PUBLIC_FOLDER;
 
-  const absoluteGatsbyPath = path.join(appDir, gatsbyDirectory);
+  const repositoryFolder = process.env.GITHUB_WORKSPACE;
+
+  const absoluteGatsbyPath = path.join(repositoryFolder, gatsbyDirectory);
   console.log('START COLLECTING GATSBY URLS');
   console.log('website-domain: ', domain);
   console.log('dir: ', absoluteGatsbyPath);
