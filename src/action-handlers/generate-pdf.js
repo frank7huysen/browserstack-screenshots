@@ -22,8 +22,8 @@ const generatePdf = async () => {
   const images = findFilesByExtension(SCREEN_SHOT_DIRECTORY, 'jpg');
   console.log("images found: ", images);
 
+  // Add an image, constrain it to a given size, and center it vertically and horizontally
   images.forEach((image) => {
-    // Add an image, constrain it to a given size, and center it vertically and horizontally
     doc.image(image, {
       fit: [250, 300],
       align: 'center',
