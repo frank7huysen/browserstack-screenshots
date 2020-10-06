@@ -20,7 +20,10 @@ const parseXmlAsync = (data) => {
 }
 
 const collectSiteMapUrls = async () => {
+  const oldDomain = process.env.OLD_DOMAIN;
+  const newDomain = process.env.NEW_DOMAIN;
   const sitemapUrl = process.env.WEBSITE_SITEMAP_URL;
+
   console.log("sitemap url: ", sitemapUrl);
 
   const res = await fetch(sitemapUrl);
@@ -28,11 +31,15 @@ const collectSiteMapUrls = async () => {
   const xmlParsed = await parseXmlAsync(xmlPlain);
 
   console.log(xmlParsed.urlset.url);
-  if(!xmlParsed.urlset.url) return false;
+  if (!xmlParsed.urlset.url) return false;
 
   const urls = xmlParsed.urlset.url.map(({ loc }) => {
     const [url] = loc;
-    return url;
+    const newUrl = oldDomain && newDomain
+      ? url.replace(oldDomain, newDomain)
+      : url;
+
+    return newUrl;
   }) || [];
 
   console.log('html files found: ', urls);
