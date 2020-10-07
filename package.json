@@ -10,7 +10,7 @@
     "download-screenshots": "NODE_ENV=development ACTION=download-screenshots node index.js",
     "collect-gatsby": "NODE_ENV=development ACTION=collect-static-gatsby node index.js",
     "collect-sitemap": "NODE_ENV=development ACTION=collect-sitemap-urls node index.js",
-    "generate-pdf": "NODE_ENV=development ACTION=generate-pdf node index.js"
+    "generate-html": "NODE_ENV=development ACTION=generate-html node index.js"
   },
   "repository": {
     "type": "git",
@@ -30,6 +30,7 @@
     "dotenv": "^8.2.0",
     "fetch": "^1.1.0",
     "fs": "^0.0.1-security",
+    "html-creator": "^0.4.4",
     "path": "^0.12.7",
     "pdfkit": "^0.11.0",
     "xml2js": "^0.4.23"
