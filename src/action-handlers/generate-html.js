@@ -12,6 +12,7 @@ const SCREEN_SHOT_DIRECTORY = `${appDir}/screenshots`;
 
 const getAllScreenshots = (screenshotJobResults) => {
   const screenshotInfo = screenshotJobResults.reduce((result, page) => {
+
     const screenshots = page.screenshots.map((screenshot) => {
       const urlParts = screenshot.image_url.split('/');
       const length = urlParts.length - 1;
@@ -25,7 +26,7 @@ const getAllScreenshots = (screenshotJobResults) => {
       };
     });
 
-    return [result, ...screenshots];
+    return [...result, ...screenshots];
   }, []);
 
   return screenshotInfo;
@@ -51,8 +52,8 @@ const generateHTML = async () => {
   console.log('allScreenshots: ', allScreenshots);
 
 
-  const imageListItems = allScreenshots.map(({browser, os, os_version, url, image_url}) => {
-
+  const imageListItems = allScreenshots.map(({browser, os, os_version, url, image_url, device}) => {
+    console.log({browser, os, os_version, url, image_url})
     return {
       type: 'li',
       attributes: {
@@ -66,14 +67,29 @@ const generateHTML = async () => {
             {
               type: 'h2',
               content: browser,
+              attributes: {
+                style: 'margin: 0;'
+              },
             },
             {
               type: 'p',
+              attributes: {
+                style: 'margin: 0;'
+              },
               content: `${os} ${os_version}`,
             },
-
+            {
+              type: 'p',
+              attributes: {
+                style: 'margin: 0;'
+              },
+              content: device,
+            },
             {
               type: 'a',
+              attributes: {
+                href: url
+              },
               content: url,
             },
           ],
@@ -82,6 +98,7 @@ const generateHTML = async () => {
           type: 'img',
           attributes: {
             src: image_url,
+            loading: "lazy"
           },
         },
       ],
@@ -89,7 +106,7 @@ const generateHTML = async () => {
 
   });
 
-  console.log(imageListItems);
+  // console.log(imageListItems);
 
   const html = new htmlCreator([
     {

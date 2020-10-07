@@ -31,8 +31,8 @@ const generateScreenshots = async () => {
 
   const configDir =
     process.env.NODE_ENV !== 'development'
-      ? appDir
-      : process.env.GITHUB_WORKSPACE;
+      ? process.env.GITHUB_WORKSPACE
+      : appDir;
   screenshotUrls = screenshotUrls.split(',');
 
   console.log('Start making screenshots');
