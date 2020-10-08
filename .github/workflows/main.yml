@@ -13,6 +13,17 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    # Upload result
+    - name: Upload from public_html via FTP
+      uses: airvzxf/ftp-deployment-action@latest
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        user: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local_dir: "./screenshots/1/result.html"
+        remote_dir: ""
+        delete: "false"
+
     # Collect static gatsby site urls
     - name: Gatsby collect urls
       id: collect-static-gatsby
@@ -43,11 +54,12 @@ jobs:
         job-result: ${{ steps.generate-screenshots.outputs.job-result }}
 
     # Generate pdf with screenshots
-    - name: Generate result PDF
+    - name: Generate result Html
       id: generate-pdf
       uses: frank7huysen/browserstack-screenshots@v1.4.6
       with:
-        action: 'generate-pdf'
+        action: 'generate-html'
+        job-result: ${{ steps.generate-screenshots.outputs.job-result }}
 
     # Upload artifacts
     - uses: actions/upload-artifact@v2
