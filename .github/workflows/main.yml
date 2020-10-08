@@ -20,7 +20,7 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         user: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        local_dir: "./screenshots/1/result.html"
+        local_dir: "/screenshots/1/result.html"
         remote_dir: ""
         delete: "false"
 
