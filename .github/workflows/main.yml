@@ -35,7 +35,7 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         user: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        local_dir: ${{ env.GITHUB_WORKSPACE }}/screenshots/1
+        local_dir: /github/workspace/screenshots/1
         remote_dir: "/nfn/1"
         delete: "false"
 
