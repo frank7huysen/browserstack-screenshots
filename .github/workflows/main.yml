@@ -9,6 +9,11 @@ jobs:
     name: Make screenshots
     steps:
 
+    - uses: someimportantcompany/github-actions-slack-message@v1
+      with:
+        webhook-url: https://hooks.slack.com/services/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
+        text: Hoi ..
+
     # Load repository onto ubuntu worker machine
     - name: Checkout
       uses: actions/checkout@v2
