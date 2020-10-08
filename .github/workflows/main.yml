@@ -35,8 +35,8 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         user: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        local_dir: /github/workspace/screenshots/${{GITHUB_RUN_ID}}
-        remote_dir: /nfn/${{GITHUB_RUN_ID}}
+        local_dir: /github/workspace/screenshots/${{env.GITHUB_RUN_ID}}
+        remote_dir: /nfn/${{env.GITHUB_RUN_ID}}
         delete: "false"
 
     # Collect static gatsby site urls
