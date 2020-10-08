@@ -12,13 +12,13 @@ jobs:
     - name: Notify Slack
       uses: drilonrecica/action-slack-notify@0.0.3
       env:
-        SLACK_CHANNEL: general
+        SLACK_CHANNEL: franks-test-kanaal
         SLACK_COLOR: '#3278BD'
         SLACK_ICON: https://upload.wikimedia.org/wikipedia/commons/6/68/NoxttonBot.png?size=48
         SLACK_MESSAGE: 'Hoi :rocket:'
         SLACK_TITLE: Title
         SLACK_USERNAME: drilonrecica
-        SLACK_WEBHOOK: https://hooks.slack.com/services/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
+        SLACK_WEBHOOK: https://hooks.slack.com/services/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
 
     # Load repository onto ubuntu worker machine
     - name: Checkout
