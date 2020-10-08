@@ -4,7 +4,7 @@ const core = require('@actions/core');
 const htmlCreator = require('html-creator');
 
 // Utils
-const findFilesByExtension = require('../files/find-files-by-extension');
+const ensureDirectory = require('../files/ensure-directory');
 
 // Constants
 const appDir = path.dirname(require.main.filename);
@@ -39,21 +39,19 @@ const generateHTML = async () => {
       ? core.getInput('job-result')
       : process.env.SCREENSHOTS_JOB;
   const screenshotJobResults = JSON.parse(screenshotJobResultJson);
-  console.log('screenshots: ', screenshotJobResultJson);
 
-  const outputPath = path.join(SCREEN_SHOT_DIRECTORY, 'result.html');
+  const resultHtmlOutputDirectory = path.join(SCREEN_SHOT_DIRECTORY, process.env.GITHUB_RUN_ID);
 
-  const images = findFilesByExtension(SCREEN_SHOT_DIRECTORY, 'jpg');
-  console.log('images found: ', images);
+  console.log('ensure directory: ', resultHtmlOutputDirectory);
+  ensureDirectory(resultHtmlOutputDirectory);
 
-  // Add an image, constrain it to a given size, and center it vertically and horizontally
+  const outputPath = path.join(resultHtmlOutputDirectory, 'result.html');
+  console.log('create result html > ', outputPath);
 
   const allScreenshots = getAllScreenshots(screenshotJobResults);
   console.log('allScreenshots: ', allScreenshots);
 
-
   const imageListItems = allScreenshots.map(({browser, os, os_version, url, image_url, device}) => {
-    console.log({browser, os, os_version, url, image_url})
     return {
       type: 'li',
       attributes: {
@@ -105,8 +103,6 @@ const generateHTML = async () => {
     };
 
   });
-
-  // console.log(imageListItems);
 
   const html = new htmlCreator([
     {
