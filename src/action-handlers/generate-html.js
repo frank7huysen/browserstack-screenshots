@@ -8,7 +8,6 @@ const ensureDirectory = require('../files/ensure-directory');
 
 // Constants
 const appDir = path.dirname(require.main.filename);
-const SCREEN_SHOT_DIRECTORY = `${appDir}/screenshots`;
 
 const getAllScreenshots = (screenshotJobResults) => {
   const screenshotInfo = screenshotJobResults.reduce((result, page) => {
@@ -34,6 +33,11 @@ const getAllScreenshots = (screenshotJobResults) => {
 };
 
 const generateHTML = async () => {
+  const SCREEN_SHOT_DIRECTORY =
+    process.env.NODE_ENV !== 'development'
+      ? process.env.GITHUB_WORKSPACE
+      : `${appDir}/screenshots`;
+
   console.log('Generate screenshots from directory: ', SCREEN_SHOT_DIRECTORY);
   const screenshotJobResultJson =
     process.env.NODE_ENV !== 'development'
