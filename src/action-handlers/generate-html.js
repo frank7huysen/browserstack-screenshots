@@ -140,10 +140,7 @@ const generateHTML = async () => {
   ]);
 
   const outputHtml = html.renderHTML();
-  fs.writeFile(outputPath, outputHtml, function (err) {
-    if (err) return console.log(err);
-    console.log(`${outputHtml} > ${outputPath}`);
-  });
+  fs.writeFileSync(outputPath, outputHtml);
 
   listDirectory(SCREEN_SHOT_DIRECTORY);
   listDirectory(resultHtmlOutputDirectory);
