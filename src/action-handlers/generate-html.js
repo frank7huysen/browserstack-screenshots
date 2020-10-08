@@ -128,6 +128,8 @@ const generateHTML = async () => {
     if (err) return console.log(err);
     console.log(`${outputHtml} > ${outputPath}`);
   });
+
+  core.setOutput('github-run-id', process.env.GITHUB_RUN_ID);
 };
 
 module.exports = generateHTML;

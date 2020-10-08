@@ -28,16 +28,16 @@ jobs:
         echo "GITHUB_SHA_SHORT=$GITHUB_SHA_SHORT"
         echo "GITHUB_WORKSPACE=$GITHUB_WORKSPACE"
 
-    # Upload result
-    - name: Upload from public_html via FTP
-      uses: airvzxf/ftp-deployment-action@latest
-      with:
-        server: ${{ secrets.FTP_SERVER }}
-        user: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        local_dir: /github/workspace/screenshots/${{env.GITHUB_RUN_ID}}
-        remote_dir: /nfn/${{env.GITHUB_RUN_ID}}
-        delete: "false"
+    # # Upload result
+    # - name: Upload from public_html via FTP
+    #   uses: airvzxf/ftp-deployment-action@latest
+    #   with:
+    #     server: ${{ secrets.FTP_SERVER }}
+    #     user: ${{ secrets.FTP_USERNAME }}
+    #     password: ${{ secrets.FTP_PASSWORD }}
+    #     local_dir: /github/workspace/screenshots/${{ steps.generate-html.outputs.github-run-id }}
+    #     remote_dir: /nfn/${{ steps.generate-html.outputs.github-run-id }}
+    #     delete: "false"
 
     # Collect static gatsby site urls
     - name: Gatsby collect urls
@@ -70,7 +70,7 @@ jobs:
 
     # Generate pdf with screenshots
     - name: Generate result Html
-      id: generate-pdf
+      id: generate-html
       uses: frank7huysen/browserstack-screenshots@v1.4.6
       with:
         action: 'generate-html'
