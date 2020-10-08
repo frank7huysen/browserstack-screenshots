@@ -18,7 +18,7 @@ jobs:
         SLACK_MESSAGE: 'Hoi :rocket:'
         SLACK_TITLE: Title
         SLACK_USERNAME: drilonrecica
-        SLACK_WEBHOOK: https://hooks.slack.com/services/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
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
     # Load repository onto ubuntu worker machine
     - name: Checkout
