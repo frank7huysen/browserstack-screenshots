@@ -35,7 +35,7 @@ const getAllScreenshots = (screenshotJobResults) => {
 const generateHTML = async () => {
   const SCREEN_SHOT_DIRECTORY =
     process.env.NODE_ENV !== 'development'
-      ? process.env.GITHUB_WORKSPACE
+      ? `${process.env.GITHUB_WORKSPACE}/screenshots`
       : `${appDir}/screenshots`;
 
   console.log('Generate screenshots from directory: ', SCREEN_SHOT_DIRECTORY);
