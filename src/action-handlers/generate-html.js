@@ -12,19 +12,20 @@ const SCREEN_SHOT_DIRECTORY = `${appDir}/screenshots`;
 
 const getAllScreenshots = (screenshotJobResults) => {
   const screenshotInfo = screenshotJobResults.reduce((result, page) => {
+    const screenshots = page.screenshots
+      .filter((screenshot) => screenshot.image_url !== null)
+      .map((screenshot) => {
+        const urlParts = screenshot.image_url.split('/');
+        const length = urlParts.length - 1;
+        const fileId = urlParts[length - 1];
+        const filename = urlParts[length];
+        const fullName = `${fileId}-${filename}`;
 
-    const screenshots = page.screenshots.map((screenshot) => {
-      const urlParts = screenshot.image_url.split('/');
-      const length = urlParts.length - 1;
-      const fileId = urlParts[length - 1];
-      const filename = urlParts[length];
-      const fullName = `${fileId}-${filename}`;
-
-      return {
-        ...screenshot,
-        fullName,
-      };
-    });
+        return {
+          ...screenshot,
+          fullName,
+        };
+      });
 
     return [...result, ...screenshots];
   }, []);
@@ -40,7 +41,10 @@ const generateHTML = async () => {
       : process.env.SCREENSHOTS_JOB;
   const screenshotJobResults = JSON.parse(screenshotJobResultJson);
 
-  const resultHtmlOutputDirectory = path.join(SCREEN_SHOT_DIRECTORY, process.env.GITHUB_RUN_ID);
+  const resultHtmlOutputDirectory = path.join(
+    SCREEN_SHOT_DIRECTORY,
+    process.env.GITHUB_RUN_ID,
+  );
 
   console.log('ensure directory: ', resultHtmlOutputDirectory);
   ensureDirectory(resultHtmlOutputDirectory);
@@ -51,58 +55,59 @@ const generateHTML = async () => {
   const allScreenshots = getAllScreenshots(screenshotJobResults);
   console.log('allScreenshots: ', allScreenshots);
 
-  const imageListItems = allScreenshots.map(({browser, os, os_version, url, image_url, device}) => {
-    return {
-      type: 'li',
-      attributes: {
-        style:
-          'padding: 20px; background: #e6e6e6; border-radius: 4px; margin: 4px;',
-      },
-      content: [
-        {
-          type: 'header',
-          content: [
-            {
-              type: 'h2',
-              content: browser,
-              attributes: {
-                style: 'margin: 0;'
-              },
-            },
-            {
-              type: 'p',
-              attributes: {
-                style: 'margin: 0;'
-              },
-              content: `${os} ${os_version}`,
-            },
-            {
-              type: 'p',
-              attributes: {
-                style: 'margin: 0;'
-              },
-              content: device,
-            },
-            {
-              type: 'a',
-              attributes: {
-                href: url
-              },
-              content: url,
-            },
-          ],
+  const imageListItems = allScreenshots.map(
+    ({ browser, os, os_version, url, image_url, device }) => {
+      return {
+        type: 'li',
+        attributes: {
+          style:
+            'padding: 20px; background: #e6e6e6; border-radius: 4px; margin: 4px;',
         },
-        {
-          type: 'img',
-          attributes: {
-            src: image_url,
-            loading: "lazy"
+        content: [
+          {
+            type: 'header',
+            content: [
+              {
+                type: 'h2',
+                content: browser,
+                attributes: {
+                  style: 'margin: 0;',
+                },
+              },
+              {
+                type: 'p',
+                attributes: {
+                  style: 'margin: 0;',
+                },
+                content: `${os} ${os_version}`,
+              },
+              {
+                type: 'p',
+                attributes: {
+                  style: 'margin: 0;',
+                },
+                content: device,
+              },
+              {
+                type: 'a',
+                attributes: {
+                  href: url,
+                },
+                content: url,
+              },
+            ],
           },
-        },
-      ],
-    };
-
-  });
+          {
+            type: 'img',
+            attributes: {
+              src: image_url,
+              loading: 'lazy',
+            },
+          },
+        ],
+      };
+    },
+  );
 
   const html = new htmlCreator([
     {
