@@ -48,7 +48,7 @@ const downloadScreenshots = async () => {
 
   // Set output
   const totalImagesDownloaded = getTotalImagesDownloaded(screenshotJobResults);
-  console.log(`Finished downloading jobs ${screenshotJobResults.length} totalImages downloaded: ${totalImagesDownloaded}`);
+  console.log(`Finished downloading jobs ${screenshotJobResults.length} totalImages downloaded: ${totalImagesDownloaded} to ${SCREEN_SHOT_DIRECTORY}`);
   core.setOutput("screenshots-directory", SCREEN_SHOT_DIRECTORY);
 }
 

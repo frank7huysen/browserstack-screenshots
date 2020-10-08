@@ -32,6 +32,13 @@ const getAllScreenshots = (screenshotJobResults) => {
   return screenshotInfo;
 };
 
+const listDirectory = (dir) => {
+  console.log('==== list directory ===== ')
+  console.log('dir: ', dir);
+  fs.readdirSync(dir).forEach(file => {
+    console.log(file);
+  });
+}
 const generateHTML = async () => {
   const SCREEN_SHOT_DIRECTORY =
     process.env.NODE_ENV !== 'development'
@@ -137,6 +144,10 @@ const generateHTML = async () => {
     if (err) return console.log(err);
     console.log(`${outputHtml} > ${outputPath}`);
   });
+
+  listDirectory(SCREEN_SHOT_DIRECTORY);
+  listDirectory(resultHtmlOutputDirectory);
+
 
   core.setOutput('github-run-id', process.env.GITHUB_RUN_ID);
 };
