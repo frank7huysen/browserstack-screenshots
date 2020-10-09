@@ -20,7 +20,7 @@ jobs:
     #     SLACK_USERNAME: drilonrecica
     #     SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
-    -uses: actions/slack-notifier-action@v1
+    - uses: actions/slack-notifier-action@v1
       with:
         webhook_url:  ${{ secrets.SLACK_WEBHOOK }}
         job: {
