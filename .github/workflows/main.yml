@@ -20,9 +20,9 @@ jobs:
     #     SLACK_USERNAME: drilonrecica
     #     SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
-        # Collect static gatsby site urls
-    - name: Gatsby collect urls
-      id: collect-static-gatsby
+    # Collect static gatsby site urls
+    - name: Post slack
+      id: post-slack
       uses: frank7huysen/browserstack-screenshots@v1.4.23
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
