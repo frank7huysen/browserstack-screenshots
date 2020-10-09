@@ -3,7 +3,7 @@ const fetch = require('node-fetch');
 
 const slackPost = async () => {
   try {
-    const payload = core.getInput('json_payload');
+    const payload = core.getInput('json-payload');
     console.log('====POST-SLACK-MESSAGE====');
     console.log('payload: ', payload);
 
