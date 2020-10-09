@@ -8,10 +8,11 @@ const slackPost = async () => {
     console.log('payload: ', payload);
 
     const body = JSON.stringify(payload);
+
     const response = await fetch(process.env.SLACK_WEBHOOK, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: body
+      body: payload
      });
 
     const text = await response.text();

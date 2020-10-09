@@ -54,24 +54,24 @@ jobs:
             ]
           }
 
-    # Load repository onto ubuntu worker machine
-    - name: Checkout
-      uses: actions/checkout@v2
+    # # Load repository onto ubuntu worker machine
+    # - name: Checkout
+    #   uses: actions/checkout@v2
 
-    # Show env variables
-    - uses: FranzDiebold/github-env-vars-action@v1.2.1
-    - name: Print environment variables
-      run: |
-        echo "GITHUB_REPOSITORY_SLUG=$GITHUB_REPOSITORY_SLUG"
-        echo "GITHUB_REPOSITORY_OWNER=$GITHUB_REPOSITORY_OWNER"
-        echo "GITHUB_REPOSITORY_OWNER_SLUG=$GITHUB_REPOSITORY_OWNER_SLUG"
-        echo "GITHUB_REPOSITORY_NAME=$GITHUB_REPOSITORY_NAME"
-        echo "GITHUB_REPOSITORY_NAME_SLUG=$GITHUB_REPOSITORY_NAME_SLUG"
-        echo "GITHUB_REF_SLUG=$GITHUB_REF_SLUG"
-        echo "GITHUB_REF_NAME=$GITHUB_REF_NAME"
-        echo "GITHUB_REF_NAME_SLUG=$GITHUB_REF_NAME_SLUG"
-        echo "GITHUB_SHA_SHORT=$GITHUB_SHA_SHORT"
-        echo "GITHUB_WORKSPACE=$GITHUB_WORKSPACE"
+    # # Show env variables
+    # - uses: FranzDiebold/github-env-vars-action@v1.2.1
+    # - name: Print environment variables
+    #   run: |
+    #     echo "GITHUB_REPOSITORY_SLUG=$GITHUB_REPOSITORY_SLUG"
+    #     echo "GITHUB_REPOSITORY_OWNER=$GITHUB_REPOSITORY_OWNER"
+    #     echo "GITHUB_REPOSITORY_OWNER_SLUG=$GITHUB_REPOSITORY_OWNER_SLUG"
+    #     echo "GITHUB_REPOSITORY_NAME=$GITHUB_REPOSITORY_NAME"
+    #     echo "GITHUB_REPOSITORY_NAME_SLUG=$GITHUB_REPOSITORY_NAME_SLUG"
+    #     echo "GITHUB_REF_SLUG=$GITHUB_REF_SLUG"
+    #     echo "GITHUB_REF_NAME=$GITHUB_REF_NAME"
+    #     echo "GITHUB_REF_NAME_SLUG=$GITHUB_REF_NAME_SLUG"
+    #     echo "GITHUB_SHA_SHORT=$GITHUB_SHA_SHORT"
+    #     echo "GITHUB_WORKSPACE=$GITHUB_WORKSPACE"
 
     # # Upload result
     # - name: Upload from public_html via FTP
@@ -85,47 +85,47 @@ jobs:
     #     delete: "false"
 
     # Collect static gatsby site urls
-    - name: Gatsby collect urls
-      id: collect-static-gatsby
-      uses: frank7huysen/browserstack-screenshots@v1.4.24
-      with:
-        action: 'collect-static-gatsby'
-        gatsby-public-folder: ./gatsby-public
-        website-domain: https://staging.try.theaterthuis.nl/nl-nl/
+    # - name: Gatsby collect urls
+    #   id: collect-static-gatsby
+    #   uses: frank7huysen/browserstack-screenshots@v1.4.24
+    #   with:
+    #     action: 'collect-static-gatsby'
+    #     gatsby-public-folder: ./gatsby-public
+    #     website-domain: https://staging.try.theaterthuis.nl/nl-nl/
 
-    # Generate screenshots
-    - name: Generate screenshots
-      id: generate-screenshots
-      env:
-        CI: true
-        BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
-        BROWSERSTACK_PASSWORD: ${{ secrets.BROWSERSTACK_PASSWORD }}
-      uses: frank7huysen/browserstack-screenshots@v1.4.24
-      with:
-        action: 'generate-screenshots'
-        screenshot-page-urls: ${{ steps.collect-static-gatsby.outputs.urls }}
+    # # Generate screenshots
+    # - name: Generate screenshots
+    #   id: generate-screenshots
+    #   env:
+    #     CI: true
+    #     BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+    #     BROWSERSTACK_PASSWORD: ${{ secrets.BROWSERSTACK_PASSWORD }}
+    #   uses: frank7huysen/browserstack-screenshots@v1.4.24
+    #   with:
+    #     action: 'generate-screenshots'
+    #     screenshot-page-urls: ${{ steps.collect-static-gatsby.outputs.urls }}
 
-    # Download screenshots from browserstack
-    - name: Download screenshots
-      id: download-screenshots
-      uses: frank7huysen/browserstack-screenshots@v1.4.24
-      with:
-        action: 'download-screenshots'
-        job-result: ${{ steps.generate-screenshots.outputs.job-result }}
+    # # Download screenshots from browserstack
+    # - name: Download screenshots
+    #   id: download-screenshots
+    #   uses: frank7huysen/browserstack-screenshots@v1.4.24
+    #   with:
+    #     action: 'download-screenshots'
+    #     job-result: ${{ steps.generate-screenshots.outputs.job-result }}
 
-    # Generate pdf with screenshots
-    - name: Generate result Html
-      id: generate-html
-      uses: frank7huysen/browserstack-screenshots@v1.4.24
-      with:
-        action: 'generate-html'
-        job-result: ${{ steps.generate-screenshots.outputs.job-result }}
+    # # Generate pdf with screenshots
+    # - name: Generate result Html
+    #   id: generate-html
+    #   uses: frank7huysen/browserstack-screenshots@v1.4.24
+    #   with:
+    #     action: 'generate-html'
+    #     job-result: ${{ steps.generate-screenshots.outputs.job-result }}
 
-    # Upload artifacts
-    - uses: actions/upload-artifact@v2
-      with:
-        name: browserstack-screenshots
-        path: ${{ steps.download-screenshots.outputs.screenshots-directory }}
+    # # Upload artifacts
+    # - uses: actions/upload-artifact@v2
+    #   with:
+    #     name: browserstack-screenshots
+    #     path: ${{ steps.download-screenshots.outputs.screenshots-directory }}
 
 
 
