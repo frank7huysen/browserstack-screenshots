@@ -23,30 +23,30 @@ jobs:
     -uses: actions/slack-notifier-action@v1
       with:
         webhook_url:  ${{ secrets.SLACK_WEBHOOK }}
-      job: {
-        "channel": "franks-test-kanaal",
-        "text": "testing slack messaging",
-        "blocks": [
-          {
-            "type": "section",
-            "text": {
-              "type": "mrkdwn",
-              "text": "Screenshots have been made."
-            },
-            "accessory": {
-              "type": "button",
+        job: {
+          "channel": "franks-test-kanaal",
+          "text": "testing slack messaging",
+          "blocks": [
+            {
+              "type": "section",
               "text": {
-                "type": "plain_text",
-                "text": "View Results",
-                "emoji": true
+                "type": "mrkdwn",
+                "text": "Screenshots have been made."
               },
-              "value": "click_me_123",
-              "url": "http://lp.dutchchannels.com/nfn/1/result.html",
-              "action_id": "button-action"
+              "accessory": {
+                "type": "button",
+                "text": {
+                  "type": "plain_text",
+                  "text": "View Results",
+                  "emoji": true
+                },
+                "value": "click_me_123",
+                "url": "http://lp.dutchchannels.com/nfn/1/result.html",
+                "action_id": "button-action"
+              }
             }
-          }
-        ]
-      }
+          ]
+        }
 
     # Load repository onto ubuntu worker machine
     - name: Checkout
