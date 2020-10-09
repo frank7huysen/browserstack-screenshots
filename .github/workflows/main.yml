@@ -9,17 +9,47 @@ jobs:
     name: Make screenshots
     steps:
 
-    - name: Notify Slack
-      uses: drilonrecica/action-slack-notify@0.0.3
-      env:
-        SLACK_CHANNEL: franks-test-kanaal
-        SLACK_COLOR: '#3278BD'
-        SLACK_ICON: https://upload.wikimedia.org/wikipedia/commons/6/68/NoxttonBot.png?size=48
-        SLACK_MESSAGE: 'Hoi :rocket:'
-        SLACK_TITLE: Title
-        SLACK_USERNAME: drilonrecica
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+    # - name: Notify Slack
+    #   uses: drilonrecica/action-slack-notify@0.0.3
+    #   env:
+    #     SLACK_CHANNEL: franks-test-kanaal
+    #     SLACK_COLOR: '#3278BD'
+    #     SLACK_ICON: https://upload.wikimedia.org/wikipedia/commons/6/68/NoxttonBot.png?size=48
+    #     SLACK_MESSAGE: 'Hoi :rocket:'
+    #     SLACK_TITLE: Title
+    #     SLACK_USERNAME: drilonrecica
+    #     SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
+    - name: Slack Message
+      uses: hbfernandes/slack-action@1.0
+      env:
+        SLACK_TOKEN: ${{ secrets.SLACK_WEBHOOK }}
+      with:
+        args: |
+          {
+            "channel": "franks-test-kanaal",
+            "text": "testing slack messaging",
+            "blocks": [
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "Screenshots have been made."
+                },
+                "accessory": {
+                  "type": "button",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "View Results",
+                    "emoji": true
+                  },
+                  "value": "click_me_123",
+                  "url": "http://lp.dutchchannels.com/nfn/1/result.html",
+                  "action_id": "button-action"
+                }
+              }
+            ]
+          }
     # Load repository onto ubuntu worker machine
     - name: Checkout
       uses: actions/checkout@v2
