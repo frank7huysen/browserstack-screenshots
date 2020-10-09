@@ -23,7 +23,7 @@ jobs:
     # Collect static gatsby site urls
     - name: Post slack
       id: post-slack
-      uses: frank7huysen/browserstack-screenshots@v1.4.24
+      uses: frank7huysen/browserstack-screenshots@v1.4.25
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
       with:
