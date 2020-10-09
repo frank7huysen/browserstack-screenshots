@@ -24,7 +24,7 @@ jobs:
       uses: opspresso/action-slack@master
       env:
         SLACK_TOKEN: ${{ secrets.SLACK_WEBHOOK }}
-        JSON_PATH: slack_message.json
+        JSON_PATH: ./slack_message.json
 
     # Load repository onto ubuntu worker machine
     - name: Checkout
