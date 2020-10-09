@@ -29,24 +29,24 @@ jobs:
             "channel": "franks-test-kanaal",
             "text": "testing slack messaging",
             "blocks": [
-            {
+              {
                 "type": "section",
                 "text": {
                 "type": "mrkdwn",
                 "text": "Version 1.0.3 of Landingpage NewfaithNetwork has been deployed. Visit https://staging..... to check the deployment. A report of all screenshots has been made available."
-                },
+              },
                 "accessory": {
-                "type": "button",
-                "text": {
-                    "type": "plain_text",
-                    "text": "View Results",
-                    "emoji": true
-                },
-                "value": "click_me_123",
-                "url": "https://lp.dutchchannels.com/nfn/295602473/result.html",
-                "action_id": "button-action"
+                  "type": "button",
+                  "text": {
+                      "type": "plain_text",
+                      "text": "View Results",
+                      "emoji": true
+                  },
+                  "value": "click_me_123",
+                  "url": "https://lp.dutchchannels.com/nfn/295602473/result.html",
+                  "action_id": "button-action"
                 }
-            }
+              }
             ]
           }
 
