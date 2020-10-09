@@ -10,7 +10,8 @@
     "download-screenshots": "NODE_ENV=development ACTION=download-screenshots node index.js",
     "collect-gatsby": "NODE_ENV=development ACTION=collect-static-gatsby node index.js",
     "collect-sitemap": "NODE_ENV=development ACTION=collect-sitemap-urls node index.js",
-    "generate-html": "NODE_ENV=development ACTION=generate-html node index.js"
+    "generate-html": "NODE_ENV=development ACTION=generate-html node index.js",
+    "slack-post": "NODE_ENV=development ACTION=slack-post node index.js"
   },
   "repository": {
     "type": "git",

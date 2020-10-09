@@ -12,14 +12,15 @@ const downloadScreenshots = require('./src/action-handlers/download-screenshots'
 const collectGatsbyUrls = require('./src/action-handlers/collect-static-gatsby-urls');
 const generateHTML = require('./src/action-handlers/generate-html');
 const collectSitemapUrls = require('./src/action-handlers/collect-sitemap-urls');
-
+const slackPost = require('./src/action-handlers/slack-post');
 
 const ACTION_HANDLERS = {
   'generate-screenshots': generateScreenshots,
   'download-screenshots': downloadScreenshots,
   'collect-static-gatsby': collectGatsbyUrls,
   'generate-html': generateHTML,
-  'collect-sitemap-urls': collectSitemapUrls
+  'collect-sitemap-urls': collectSitemapUrls,
+  'slack-post': slackPost,
 };
 
 (async () => {
