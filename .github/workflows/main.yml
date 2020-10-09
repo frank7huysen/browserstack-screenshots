@@ -23,7 +23,7 @@ jobs:
     - uses: actions/slack-notifier-action@v1
       with:
         webhook_url:  ${{ secrets.SLACK_WEBHOOK }}
-        job: {
+        job: `{
           "channel": "franks-test-kanaal",
           "text": "testing slack messaging",
           "blocks": [
@@ -46,7 +46,7 @@ jobs:
               }
             }
           ]
-        }
+        }`
 
     # Load repository onto ubuntu worker machine
     - name: Checkout
