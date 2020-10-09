@@ -1,0 +1,24 @@
+{
+  "channel": "franks-test-kanaal",
+  "text": "testing slack messaging",
+  "blocks": [
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "Screenshots have been made."
+      },
+      "accessory": {
+        "type": "button",
+        "text": {
+          "type": "plain_text",
+          "text": "View Results",
+          "emoji": true
+        },
+        "value": "click_me_123",
+        "url": "http://lp.dutchchannels.com/nfn/1/result.html",
+        "action_id": "button-action"
+      }
+    }
+  ]
+}
