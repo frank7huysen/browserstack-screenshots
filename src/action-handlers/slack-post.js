@@ -17,8 +17,10 @@ const slackPost = async () => {
 
     const text = await response.text();
     console.log({ text });
+    if(text !== 'ok') throw new Error(text);
   } catch (error) {
     console.log('failed to send slack message: ', error);
+    core.setFailed(error.message);
   }
 };
 

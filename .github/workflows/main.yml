@@ -31,7 +31,7 @@ jobs:
         json-payload: >-
           {
             "channel": "franks-test-kanaal",
-            "text": "testing slack messaging",
+            "text": "Landingpage NewFaithNetwork QA",
             "blocks": [
               {
                 "type": "section",
@@ -47,7 +47,7 @@ jobs:
                       "emoji": true
                   },
                   "value": "click_me_124",
-                  "url": "https://lp.dutchchannels.com/nfn/295602473/result.html",
+                  "url": "https://lp.dutchchannels.com/nfn/${{ steps.generate-html.outputs.github-run-id }}/result.html",
                   "action_id": "button-action"
                 }
               }
